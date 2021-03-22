@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.hoveredObjectData {
+  list-style-type: none;
+  margin:5px;
+  padding:5px;
+}
+h4 {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  color: rgb(240, 172, 62);
+}
