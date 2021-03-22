@@ -1,22 +1,25 @@
 {
   "files": {
-    "main.css": "/CoVax/static/css/main.cb00e375.chunk.css",
+    "main.css": "/CoVax/static/css/main.7c63c2ff.chunk.css",
     "main.js": "/CoVax/static/js/main.133cdbe7.chunk.js",
     "main.js.map": "/CoVax/static/js/main.133cdbe7.chunk.js.map",
     "runtime-main.js": "/CoVax/static/js/runtime-main.f20b809d.js",
     "runtime-main.js.map": "/CoVax/static/js/runtime-main.f20b809d.js.map",
+    "static/css/2.569bb127.chunk.css": "/CoVax/static/css/2.569bb127.chunk.css",
     "static/js/2.42c97981.chunk.js": "/CoVax/static/js/2.42c97981.chunk.js",
     "static/js/2.42c97981.chunk.js.map": "/CoVax/static/js/2.42c97981.chunk.js.map",
     "static/js/3.0fefb92a.chunk.js": "/CoVax/static/js/3.0fefb92a.chunk.js",
     "static/js/3.0fefb92a.chunk.js.map": "/CoVax/static/js/3.0fefb92a.chunk.js.map",
     "index.html": "/CoVax/index.html",
-    "static/css/main.cb00e375.chunk.css.map": "/CoVax/static/css/main.cb00e375.chunk.css.map",
+    "static/css/2.569bb127.chunk.css.map": "/CoVax/static/css/2.569bb127.chunk.css.map",
+    "static/css/main.7c63c2ff.chunk.css.map": "/CoVax/static/css/main.7c63c2ff.chunk.css.map",
     "static/js/2.42c97981.chunk.js.LICENSE.txt": "/CoVax/static/js/2.42c97981.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f20b809d.js",
+    "static/css/2.569bb127.chunk.css",
     "static/js/2.42c97981.chunk.js",
-    "static/css/main.cb00e375.chunk.css",
+    "static/css/main.7c63c2ff.chunk.css",
     "static/js/main.133cdbe7.chunk.js"
   ]
 }
