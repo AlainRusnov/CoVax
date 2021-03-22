@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/CoVax/static/css/main.f78208a0.chunk.css",
+    "main.css": "/CoVax/static/css/main.6375594d.chunk.css",
     "main.js": "/CoVax/static/js/main.698529fb.chunk.js",
     "main.js.map": "/CoVax/static/js/main.698529fb.chunk.js.map",
     "runtime-main.js": "/CoVax/static/js/runtime-main.89e4e167.js",
@@ -10,13 +10,13 @@
     "static/js/3.6a1d4a15.chunk.js": "/CoVax/static/js/3.6a1d4a15.chunk.js",
     "static/js/3.6a1d4a15.chunk.js.map": "/CoVax/static/js/3.6a1d4a15.chunk.js.map",
     "index.html": "/CoVax/index.html",
-    "static/css/main.f78208a0.chunk.css.map": "/CoVax/static/css/main.f78208a0.chunk.css.map",
+    "static/css/main.6375594d.chunk.css.map": "/CoVax/static/css/main.6375594d.chunk.css.map",
     "static/js/2.7c743f6e.chunk.js.LICENSE.txt": "/CoVax/static/js/2.7c743f6e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.89e4e167.js",
     "static/js/2.7c743f6e.chunk.js",
-    "static/css/main.f78208a0.chunk.css",
+    "static/css/main.6375594d.chunk.css",
     "static/js/main.698529fb.chunk.js"
   ]
 }
