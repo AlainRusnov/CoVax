@@ -17,7 +17,7 @@ const INITIAL_VIEW_STATE = {
   bearing: 5
 };
 
-// let data;
+let data;
 
 export default class App extends React.Component {
   state = {};
@@ -41,17 +41,36 @@ export default class App extends React.Component {
   fetchData() {
     axios.all([
       axios.get('https://disease.sh/v2/countries?allowNull=false'),
-    ]).then(axios.spread((World) => {
-      let data = World.data || [];
+      axios.get('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations.json'),
+    ]).then(axios.spread((World, vax) => {
+
+      // let vaxData = vax.data || [];
+      // // data = vaxData;
+      // // console.log(vaxData);   // FRA.data.total_vaccinations
+
+      // vaxData = vaxData.map(function (vaxData) {
+      //   return {
+      //     vaxCountry: vaxData.country.data,  // data.total_vaccinations,
+      //   };
+      // });
+
+
+      let WorldData = World.data || [];
+      data = WorldData;
+
       data = data.map(function (location) {
         return {
           active: location.active,
           country: location.country,
           continent: location.continent,
-          coordinates: [location.countryInfo.long, location.countryInfo.lat]
+          coordinates: [location.countryInfo.long, location.countryInfo.lat],
+          flag: location.countryInfo.flag,
+          iso: location.countryInfo.iso3
         };
+
       });
       // data = data.filter(location => (location.continent === "Europe"));
+      // data = data.concat(vaxData);
       this.setState({ data: data });
     })).catch((error) => {
       console.log(error); return [];
@@ -66,15 +85,17 @@ export default class App extends React.Component {
           <div style={{
             position: "absolute",
             zIndex: 1000,
-            background: "#ffffff",
+            background: "#1D1D1F",
             pointerEvents: "none",
             borderRadius: "5px",
             left: hover.x,
             top: hover.y
           }} >
             <ul className="hoveredObjectData">
+              <li><img src={hover.hoveredObject.flag} alt={"flag"} /></li>
               <li><h4>{hover.hoveredObject.country}</h4></li>
-              <li>active cases: <span>{hover.hoveredObject.active.toLocaleString()}</span></li>
+              <li>Active cases: <span>{hover.hoveredObject.active.toLocaleString()}</span></li>
+              <li>iso code: <span>{hover.hoveredObject.iso}</span></li>
             </ul>
           </div>
           )
