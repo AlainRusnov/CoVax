@@ -38,3 +38,8 @@
     transform: rotate(360deg);
   }
 }
+
+h1 {
+  z-index: 100;
+  color: "#E0DDDE";
+}

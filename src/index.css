@@ -32,3 +32,8 @@ img {
   max-width: 75px;
   max-height: 50px;
 }
+
+h1 {
+  z-index: 10000;
+  color: "#E0DDDE";
+}
