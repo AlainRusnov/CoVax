@@ -11,7 +11,7 @@ const INITIAL_VIEW_STATE = {
   longitude: 12.8333,
   latitude: 42.8333,
   zoom: 4,
-  maxZoom: 20,
+  maxZoom: 30,
   minZoom: 4,
   pitch: 60,
   bearing: 5
@@ -65,7 +65,11 @@ export default class App extends React.Component {
           continent: location.continent,
           coordinates: [location.countryInfo.long, location.countryInfo.lat],
           flag: location.countryInfo.flag,
-          iso: location.countryInfo.iso3
+          clickable: true,
+          iso: location.countryInfo.iso3,
+          deaths: location.deaths,
+          updated: new Date(location.updated).toISOString().substring(0, 10),
+          recovered: location.recovered ? location.recovered : "N/A",
         };
 
       });
@@ -95,7 +99,9 @@ export default class App extends React.Component {
               <li><img src={hover.hoveredObject.flag} alt={"flag"} /></li>
               <li><h4>{hover.hoveredObject.country}</h4></li>
               <li>Active cases: <span>{hover.hoveredObject.active.toLocaleString()}</span></li>
-              <li>iso code: <span>{hover.hoveredObject.iso}</span></li>
+              <li>Recovered: <span>{hover.hoveredObject.recovered.toLocaleString()}</span></li>
+              <li>Deaths: <span>{hover.hoveredObject.deaths.toLocaleString()}</span></li>
+              <li>updated: <span>{hover.hoveredObject.updated}</span></li>
             </ul>
           </div>
           )
