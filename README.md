@@ -3,4 +3,8 @@ https://alainrusnov.github.io/CoVax/
 
 // Deck.gl, D3.js, Mapbox, Axios, React
 
-![Screenshot (332)](https://user-images.githubusercontent.com/71734708/112530696-22404d80-8d7d-11eb-9b92-3e47c900b8c5.png)
+![Screenshot (335)](https://user-images.githubusercontent.com/71734708/112537862-9252d180-8d85-11eb-8297-8796cddbf213.png)
+
+* Covid Global Data sourced and updated from https://disease.sh/
+* Vaccination Data sourced and updated from https://ourworldindata.org/covid-vaccinations
+* Certain countries data reporting and format is irregular
