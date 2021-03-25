@@ -4,7 +4,7 @@ import { StaticMap } from 'react-map-gl';
 import axios from "axios";
 import { RenderLayers } from "./deck.gl-layer.jsx";
 import _ from "lodash";
-import Modal from "./Modal";
+import Modal from "./Modal.js";
 
 
 const MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoieW9zbyIsImEiOiJja2d3aHVkMWUwYWZoMzFwbnNxdnhjbmtoIn0.72451mV-JRRnWfaqmz0ZnQ";
@@ -28,6 +28,7 @@ export default class App extends React.Component {
     super();
     this.state = {
       data: [],
+      render: false,
       click: {
         clickedObject: null
       },
@@ -48,7 +49,7 @@ export default class App extends React.Component {
     });
   }
 
-  renderLocation({ object, layer }) {
+  renderModal({ object, layer }) {
     this.setState({ click: { layer, clickedObject: object } });
 
   }
@@ -127,15 +128,32 @@ export default class App extends React.Component {
     return (
       <div>
         {click.clickedObject && (
-          <div>
-            {click.clickedObject.clickable && (
+          <div style={{
+            position: "absolute",
+            zIndex: 1000,
+            background: "#1D1D1F",
+            borderRadius: "5px",
+          }} >
+              {click.clickedObject.clickable && (
               <Modal closeModal={this.closeModal} modelState={"true"}>
               <h1>CoVax</h1>
               {console.log("MODAL !!")}
+              <ul className="modal-context">
+              <li><img src={click.clickedObject.flag} alt={"flag"} /></li>
+              <li><h4>{click.clickedObject.country}</h4></li>
+              <li>Active cases: <span>{click.clickedObject.active.toLocaleString()}</span></li>
+              <li>Recovered: <span>{click.clickedObject.recovered.toLocaleString()}</span></li>
+              <li>Deaths: <span>{click.clickedObject.deaths.toLocaleString()}</span></li>
+              <li>Population: <span>{click.clickedObject.population.toLocaleString()}</span></li>
+              <li>People with 1 vaccination: <span>{click.clickedObject.vaxCount && click.clickedObject.vaxCount.people_vaccinated? click.clickedObject.vaxCount.people_vaccinated.toLocaleString() : "N/A"}</span></li>
+              <li>People Fully vaccinated: <span>{click.clickedObject.vaxCount && click.clickedObject.vaxCount.people_fully_vaccinated? click.clickedObject.vaxCount.people_fully_vaccinated.toLocaleString() : "N/A"}</span></li>
+              <li>Total Vaccinations: <span>{click.clickedObject.vaxCount? click.clickedObject.vaxCount.total_vaccinations.toLocaleString() : "N/A"}</span></li>
+              <li>updated: <span>{click.clickedObject.updated}</span></li>
+            </ul>
               </Modal>
             )}
           </div>
-        )}
+        )};
         {hover.hoveredObject && (
           <div style={{
             position: "absolute",
@@ -161,7 +179,7 @@ export default class App extends React.Component {
           </div>
           )
         }
-        <DeckGL layers={RenderLayers({ data: data, onHover: hover => this.renderTooltip(hover), onClick: click => this.renderLocation(click)})} initialViewState={INITIAL_VIEW_STATE} controller={true} ><StaticMap mapStyle={mapStyle} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
+        <DeckGL layers={RenderLayers({ data: data, onHover: hover => this.renderTooltip(hover), onClick: click => this.renderModal(click)})} initialViewState={INITIAL_VIEW_STATE} controller={true} ><StaticMap mapStyle={mapStyle} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
         </DeckGL>
       </div>
 

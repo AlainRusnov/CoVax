@@ -1,0 +1,20 @@
+.modal {
+  display: flex;
+  padding: 1em;
+}
+
+h1 {
+  color: rgb(240, 172, 62);
+}
+
+/* ul {
+} */
+
+li {
+  list-style-type: none;
+  color: azure;
+}
+
+button {
+  align-self: auto;
+}

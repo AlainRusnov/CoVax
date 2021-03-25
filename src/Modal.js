@@ -1,4 +1,6 @@
 import React from "react";
+import "./modal.css";
+
 class Modal extends React.Component {
   constructor(props) {
     super();
@@ -10,9 +12,8 @@ class Modal extends React.Component {
     const closeModal = this.props.closeModal;
 
     return (
-      <div className="modal">
-          <button aria-label="close" onClick={event => closeModal(event)} />
-          {this.props.children}
+      <div className="modal" onClick={event => closeModal(event)}>
+      {this.props.children}
      </div>
     );
   }
