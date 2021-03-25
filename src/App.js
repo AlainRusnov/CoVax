@@ -21,6 +21,7 @@ const INITIAL_VIEW_STATE = {
 
 let data;
 let iso;
+let vaxPerPop;
 
 export default class App extends React.Component {
   state = {};
@@ -132,15 +133,15 @@ export default class App extends React.Component {
             position: "absolute",
             zIndex: 1000,
             background: "#1D1D1F",
-            borderRadius: "5px",
+            // borderRadius: "5px",
           }} >
               {click.clickedObject.clickable && (
               <Modal closeModal={this.closeModal} modelState={"true"}>
               <h1>CoVax</h1>
               {console.log("MODAL !!")}
               <ul className="modal-context">
-              <li><img src={click.clickedObject.flag} alt={"flag"} /></li>
-              <li><h4>{click.clickedObject.country}</h4></li>
+              <li class="flag"><img src={click.clickedObject.flag} alt={"flag"} /></li>
+              <li class="name"><h4>{click.clickedObject.country}</h4></li>
               <li>Active cases: <span>{click.clickedObject.active.toLocaleString()}</span></li>
               <li>Recovered: <span>{click.clickedObject.recovered.toLocaleString()}</span></li>
               <li>Deaths: <span>{click.clickedObject.deaths.toLocaleString()}</span></li>
@@ -148,6 +149,8 @@ export default class App extends React.Component {
               <li>People with 1 vaccination: <span>{click.clickedObject.vaxCount && click.clickedObject.vaxCount.people_vaccinated? click.clickedObject.vaxCount.people_vaccinated.toLocaleString() : "N/A"}</span></li>
               <li>People Fully vaccinated: <span>{click.clickedObject.vaxCount && click.clickedObject.vaxCount.people_fully_vaccinated? click.clickedObject.vaxCount.people_fully_vaccinated.toLocaleString() : "N/A"}</span></li>
               <li>Total Vaccinations: <span>{click.clickedObject.vaxCount? click.clickedObject.vaxCount.total_vaccinations.toLocaleString() : "N/A"}</span></li>
+              <li>Population vaccinated: <span>{click.clickedObject.vaxCount && click.clickedObject.vaxCount.people_vaccinated? (( click.clickedObject.vaxCount.people_vaccinated * 100) / click.clickedObject.population).toFixed(2) + "%" : " N/A"}</span></li>
+              <li>Pop. Fully vaccinated: <span>{click.clickedObject.vaxCount && click.clickedObject.vaxCount.people_fully_vaccinated? (( click.clickedObject.vaxCount.people_fully_vaccinated * 100) / click.clickedObject.population).toFixed(2) + "%" : " N/A"}</span></li>
               <li>updated: <span>{click.clickedObject.updated}</span></li>
             </ul>
               </Modal>
