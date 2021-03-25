@@ -4,6 +4,7 @@ import { StaticMap } from 'react-map-gl';
 import axios from "axios";
 import { RenderLayers } from "./deck.gl-layer.jsx";
 import _ from "lodash";
+import Modal from "./Modal";
 
 
 const MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoieW9zbyIsImEiOiJja2d3aHVkMWUwYWZoMzFwbnNxdnhjbmtoIn0.72451mV-JRRnWfaqmz0ZnQ";
@@ -19,6 +20,7 @@ const INITIAL_VIEW_STATE = {
 };
 
 let data;
+let iso;
 
 export default class App extends React.Component {
   state = {};
@@ -26,6 +28,9 @@ export default class App extends React.Component {
     super();
     this.state = {
       data: [],
+      click: {
+        clickedObject: null
+      },
       hover: {
         x: 0,
         y: 0,
@@ -33,6 +38,21 @@ export default class App extends React.Component {
       }
     };
   }
+
+  closeModal = () => {
+    this.setState({
+      click: {
+        clickedObject: null
+      },
+      render: false
+    });
+  }
+
+  renderLocation({ object, layer }) {
+    this.setState({ click: { layer, clickedObject: object } });
+
+  }
+
   renderTooltip({ x, y, object, layer }) {
     this.setState({ hover: { x, y, layer, hoveredObject: object } });
   }
@@ -54,14 +74,15 @@ export default class App extends React.Component {
           // country: location.country,  // data.total_vaccinations,
           vaxCount: location.data ? (location.data).pop() : "N/A",
           iso: location.iso_code,
+          clickable: true,
         };
       });
 
 
       let WorldData = World.data || [];
-      data = WorldData;
+      // data = WorldData;
 
-      data = data.map(function (location) {
+      WorldData = WorldData.map(function (location) {
         return {
           active: location.active,
           country: location.country,
@@ -77,25 +98,44 @@ export default class App extends React.Component {
         };
 
       });
+      // for (iso in vaxData) {
+      //   if (vaxData.hasOwnProperty(iso) && vaxData[iso] === /([OWID])\w+/g) {
+      //     delete vaxData[iso];
+      //   }
+      // }
+      // const vaxInfo = vaxData.filter(location => { return (location.iso !== "SHN" ) || (location.iso !== "GGY")});
+      // console.log(vaxInfo);
       // data = data.filter(location => (location.continent === "Europe"));
       // data = WorldData.concat(vaxData);
       // data = Object.assign(vaxData, WorldData);
       // data = {...WorldData, ...vaxData}
       // data = _.merge(WorldData, vaxData);
-      // var merged = _.merge(_.keyBy(WorldData, 'iso'), _.keyBy(vaxData, 'iso'));
-      // var data = _.values(merged);
-      // console.log(data);
+
+
+      var merged = _.merge(_.keyBy(WorldData, 'iso'), _.keyBy(vaxData, 'iso'));
+      var data = _.values(merged);
+      data.splice(220, 9e9);
+      console.log(data);
       this.setState({ data: data });
     })).catch((error) => {
       console.log(error); return [];
     })
   }
   render() {
-    const { hover, data } = this.state;
+    const { hover, click, data } = this.state;
     // console.log(data);
     return (
       <div>
-        <h1>CoVax</h1>
+        {click.clickedObject && (
+          <div>
+            {click.clickedObject.clickable && (
+              <Modal closeModal={this.closeModal} modelState={"true"}>
+              <h1>CoVax</h1>
+              {console.log("MODAL !!")}
+              </Modal>
+            )}
+          </div>
+        )}
         {hover.hoveredObject && (
           <div style={{
             position: "absolute",
@@ -113,12 +153,14 @@ export default class App extends React.Component {
               <li>Recovered: <span>{hover.hoveredObject.recovered.toLocaleString()}</span></li>
               <li>Deaths: <span>{hover.hoveredObject.deaths.toLocaleString()}</span></li>
               <li>Population: <span>{hover.hoveredObject.population.toLocaleString()}</span></li>
+              <li>People with 1 vaccination: <span>{hover.hoveredObject.vaxCount.people_vaccinated.toLocaleString()}</span></li>
+              <li>Total Vaccinations: <span>{hover.hoveredObject.vaxCount.total_vaccinations.toLocaleString()}</span></li>
               <li>updated: <span>{hover.hoveredObject.updated}</span></li>
             </ul>
           </div>
           )
         }
-        <DeckGL layers={RenderLayers({ data: data, onHover: hover => this.renderTooltip(hover)})} initialViewState={INITIAL_VIEW_STATE} controller={true} ><StaticMap mapStyle={mapStyle} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
+        <DeckGL layers={RenderLayers({ data: data, onHover: hover => this.renderTooltip(hover), onClick: click => this.renderLocation(click)})} initialViewState={INITIAL_VIEW_STATE} controller={true} ><StaticMap mapStyle={mapStyle} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
         </DeckGL>
       </div>
 

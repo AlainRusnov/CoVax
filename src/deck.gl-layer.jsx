@@ -4,7 +4,7 @@ import { scaleLinear, scaleLog } from "d3-scale";
 export const RenderLayers = (props) => {
   let maxActive, minActive;
   const radiusColumns = 40000;
-  const { data, onHover } = props;
+  const { data, onHover, onClick } = props;
   const value = data.map((a) => a.active);
   maxActive = Math.max(...value);
   minActive = Math.min(...value);
@@ -27,6 +27,7 @@ export const RenderLayers = (props) => {
     getFillColor: [127, 3, 3, 255],  ///[48, 128, (d.population / d.active) * 100 * 255, 255],    ///[(d.population / d.active) * 100 * 255, 3, 3],
     getElevation: d => elevation(d.active),
     onHover,
+    onClick
     }),
   ];
 }
