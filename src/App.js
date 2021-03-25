@@ -153,7 +153,7 @@ export default class App extends React.Component {
               <li>Recovered: <span>{hover.hoveredObject.recovered.toLocaleString()}</span></li>
               <li>Deaths: <span>{hover.hoveredObject.deaths.toLocaleString()}</span></li>
               <li>Population: <span>{hover.hoveredObject.population.toLocaleString()}</span></li>
-              <li>People with 1 vaccination: <span>{hover.hoveredObject.vaxCount? hover.hoveredObject.vaxCount.people_vaccinated.toLocaleString() : "N/A"}</span></li>
+              <li>People with 1 vaccination: <span>{hover.hoveredObject.vaxCount && hover.hoveredObject.vaxCount.people_vaccinated? hover.hoveredObject.vaxCount.people_vaccinated.toLocaleString() : "N/A"}</span></li>
               <li>Total Vaccinations: <span>{hover.hoveredObject.vaxCount? hover.hoveredObject.vaxCount.total_vaccinations.toLocaleString() : "N/A"}</span></li>
               <li>updated: <span>{hover.hoveredObject.updated}</span></li>
             </ul>
