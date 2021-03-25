@@ -3,4 +3,4 @@ https://alainrusnov.github.io/CoVax/
 
 // Deck.gl, D3.js, Mapbox, Axios, React
 
-![Screenshot (329)](https://user-images.githubusercontent.com/71734708/112013045-1bf16d80-8b00-11eb-994d-7f96e88072b9.png)
+![Screenshot (332)](https://user-images.githubusercontent.com/71734708/112530696-22404d80-8d7d-11eb-9b92-3e47c900b8c5.png)
