@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/CoVax/static/css/main.e4e41713.chunk.css",
-    "main.js": "/CoVax/static/js/main.807c1a1c.chunk.js",
-    "main.js.map": "/CoVax/static/js/main.807c1a1c.chunk.js.map",
+    "main.js": "/CoVax/static/js/main.d0bd4c0a.chunk.js",
+    "main.js.map": "/CoVax/static/js/main.d0bd4c0a.chunk.js.map",
     "runtime-main.js": "/CoVax/static/js/runtime-main.e6f6091b.js",
     "runtime-main.js.map": "/CoVax/static/js/runtime-main.e6f6091b.js.map",
     "static/js/2.68c298c7.chunk.js": "/CoVax/static/js/2.68c298c7.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.e6f6091b.js",
     "static/js/2.68c298c7.chunk.js",
     "static/css/main.e4e41713.chunk.css",
-    "static/js/main.807c1a1c.chunk.js"
+    "static/js/main.d0bd4c0a.chunk.js"
   ]
 }
