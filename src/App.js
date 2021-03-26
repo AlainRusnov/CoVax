@@ -137,11 +137,10 @@ export default class App extends React.Component {
           }} >
               {click.clickedObject.clickable && (
               <Modal closeModal={this.closeModal} modelState={"true"}>
-              <h1>CoVax</h1>
               {console.log("MODAL !!")}
               <ul className="modal-context">
-              <li class="flag"><img src={click.clickedObject.flag} alt={"flag"} /></li>
-              <li class="name"><h4>{click.clickedObject.country}</h4></li>
+              <li className="flag"><img src={click.clickedObject.flag} alt={"flag"} /></li>
+              <li className="name"><h4>{click.clickedObject.country}</h4></li>
               <li>Active cases: <span>{click.clickedObject.active.toLocaleString()}</span></li>
               <li>Recovered: <span>{click.clickedObject.recovered.toLocaleString()}</span></li>
               <li>Deaths: <span>{click.clickedObject.deaths.toLocaleString()}</span></li>
@@ -183,6 +182,9 @@ export default class App extends React.Component {
           )
         }
         <DeckGL layers={RenderLayers({ data: data, onHover: hover => this.renderTooltip(hover), onClick: click => this.renderModal(click)})} initialViewState={INITIAL_VIEW_STATE} controller={true} ><StaticMap mapStyle={mapStyle} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
+            <div>
+              {<h1 className="header">CoVax</h1>}
+            </div>
         </DeckGL>
       </div>
 
